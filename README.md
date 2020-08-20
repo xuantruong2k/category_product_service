@@ -46,16 +46,22 @@ That repo is used for practice the simple category & product relationships
 
 ### tables:
 
+> the *category_master* table contains not-frequenly (or no-change) informaion of a category
+
 | category_master |    |    |
 |----------|-------------|-------------|
 | cat_id   | string(32)  | primary key |
 | cat_name | string(64)  |             |
 | cat_desc | string(256) |             |
 
+> the *category* table contains many-to-many relationship between category. Such as a (parent) category can contain many sub-categories and a sub-category can belongs to many (parent) category
+
 | category |    |    |
 |------------|-------------|---------------------------|
 | cat_id     | string(32)  | primary key & foreign key |
 | sub_cat_id | string (32) | primary key & foreign key |
+
+> the *product_master* table contains not-frequenly (or no-change) information of a product
 
 | product_master |    |    |
 |--------------------|-------------|-------------|
@@ -64,11 +70,15 @@ That repo is used for practice the simple category & product relationships
 | product_short_desc | string(256) |             |
 | product_long_desc  | string      |             |
 
+> the *product_attributes* table make the product can have many attributes
+
 | product_attributes |    |    |
 |--------------------|------------|--------------------------|
 | product_id         | string(32) | primary key & foreign key|
 | attribute_key      | string(64) | primary key              |
 | attribute_value    | string(64) |                          |
+
+> the *category_product* table contains many-to-many relationship between category and product. Such as a category contains many products, and a product can belongs to many categories
 
 | category_product |    |    |
 |------------------|------------|---------------------------|
