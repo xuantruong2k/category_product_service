@@ -25,9 +25,10 @@ That repo is used for practice the simple category & product relationships
 + select a product to show the detailed information
 
 *Admin user:*
-+ add new category
-+ edit a category:
-   - update its sub-categories / parent-category
++ add new category master
++ edit a category & sub-category relationship:
+   - add new category & sub-category relationship
+   - delete new category & sub-category relationship
 + add a new product
 + edit a product:
    - add / remove / update a attribute
