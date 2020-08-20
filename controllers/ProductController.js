@@ -100,8 +100,8 @@ module.exports = {
     },
     // update a attribute
     updateAttribute: (req, res) => {
+        let product_id = req.params.product_id;
         let data = req.body;
-        let product_id = data.product_id;
         let attribute_key = data.attribute_key;
         let attribute_value = data.attribute_value;
         if (utils.isEmpty(product_id) || utils.isEmpty(attribute_key)) {
