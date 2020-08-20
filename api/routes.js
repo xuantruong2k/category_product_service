@@ -38,4 +38,8 @@ module.exports = function(app) {
 
     app.route('/v1/products/atrributes/:product_id?:attribute_key')
         .delete(productController.deleteAttribute); // delete a attribute
+
+    app.route('/v1/products/category_product')
+        .post(productController.addProductToCategory) // add a category - product relationship
+        .delete(productController.deleteProductFromCategory); // delete a category - product relationship
 };

@@ -105,8 +105,8 @@ module.exports = {
         let attribute_key = data.attribute_key;
         let attribute_value = data.attribute_value;
         if (utils.isEmpty(product_id) || utils.isEmpty(attribute_key)) {
-          console.log('Product id or attribute key is empty!');
-          return;
+            console.log('Product id or attribute key is empty!');
+            return;
         }
         let sql = 'UPDATE product_attributes SET attribute_value = ? WHERE product_id = ? AND attribute_key = ?';
         db.query(sql, [attribute_value, product_id, attribute_key], (err, response) => {
@@ -119,6 +119,48 @@ module.exports = {
                   'attribute_value': attribute_value
                 };
                 res.json(obj);
+            }
+        });
+    },
+    // add category & product relationship
+    addProductToCategory: (req, res) => {
+        let data = req.body;
+        let cat_id = data.cat_id;
+        let product_id = data.product_id;
+        // validate input
+        if (utils.isEmpty(cat_id) || utils.isEmpty(product_id)) {
+            console.log('Category id or product id is empty!');
+            return;
+        }
+        let sql = 'INSERT INTO category_product(cat_id, product_id) VALUES(?, ?)';
+        db.query(sql, [cat_id, product_id], (err, response) => {
+            if (err) {
+                console.log("" + err);
+            } else {
+                let obj = {
+                    'cat_id': cat_id,
+                    'product_id': product_id
+                };
+                res.json(obj);
+            }
+        });
+    },
+    // delete category & product relationship
+    deleteProductFromCategory: (req, res) => {
+        let cat_id = req.params.category_id;
+        let product_id = req.params.product_id;
+        // validate input
+        if (utils.isEmpty(cat_id) || utils.isEmpty(product_id)) {
+            console.log('Product id or attribute key is empty!');
+            return;
+        }
+
+        let sql = 'DELETE FROM category_product WHERE cat_id = ? AND product_id = ?';
+        db.query(sql, [cat_id, product_id], (err, response) => {
+            if (err) {
+                console.log("" + err);
+            } else {
+                res.status(200).end();
             }
         });
     },
