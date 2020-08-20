@@ -10,7 +10,9 @@ module.exports = function(app) {
 
     app.route('/v1/category_subcategory')
         .post(categoryController.createCatSub) // create the category - sub category relationship
-        .post(categoryController.deleteCatSub); // delete the category - sub category relationship
+
+    app.route('/v1/categories/:category_id?:sub_category_id')
+        .delete(categoryController.deleteCatSub); // delete the category - sub category relationship
 
     app.route('/v1/categories')
         .get(categoryController.list); // list all main categories
@@ -24,7 +26,16 @@ module.exports = function(app) {
     app.route('/v1/categories/categories/:category_id')
         .get(productController.getProducts); // list products of a category
 
-    // get a product detailed information
+    app.route('/v1/product_master')
+        .post(productController.create); // create a new product master
+
     app.route('/v1/products/:product_id')
-        .get(productController.get);
+        .get(productController.get); // get a product detailed information
+
+    app.route('/v1/products/attributes/')
+        .post(productController.addAttribute) // add a new attribute
+        .put(productController.updateAttribute); // update a attribute
+
+    app.route('/v1/products/atrributes/:product_id?:attribute_key')
+        .delete(productController.deleteAttribute); // delete a attribute
 };

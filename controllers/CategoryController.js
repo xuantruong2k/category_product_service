@@ -101,9 +101,8 @@ module.exports = {
     },
     // delete category & sub-category relationship
     deleteCatSub: (req, res) => {
-        let data = req.body;
-        let cat_id = data.cat_id;
-        let sub_cat_id = data.sub_cat_id;
+        let cat_id = req.params.category_id;
+        let sub_cat_id = req.params.sub_category_id;
 
         // validate input
         if (utils.isEmpty(cat_id)) {
