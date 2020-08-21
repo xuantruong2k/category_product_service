@@ -2,6 +2,7 @@
 
 const db = require('../config/db.js');
 const utils = require('../utils/utils.js');
+const define = require('../config/define.js');
 
 module.exports = {
     // list category
@@ -42,7 +43,7 @@ module.exports = {
     // create new category master
     create: (req, res) => {
         let data = req.body;
-        let cat_id = "abc12345678901234567890123456789"; // need function to generate uuid
+        let cat_id = utils.random(define.UUID_LENGTH);
         let cat_name = data.cat_name;
         let cat_desc = data.cat_desc;
 

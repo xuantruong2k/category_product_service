@@ -2,6 +2,7 @@
 
 const db = require('../config/db.js');
 const utils = require('../utils/utils.js');
+const define = require('../config/define.js');
 
 module.exports = {
 
@@ -32,6 +33,7 @@ module.exports = {
     // create new product master
     create: (req, res) => {
         let data = req.body;
+        let product_id = utils.random(define.UUID_LENGTH);
         let product_name = data.product_name;
         let product_short_desc = data.product_short_desc;
         let product_long_desc = data.product_long_desc;
